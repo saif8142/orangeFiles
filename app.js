@@ -16,9 +16,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
 
    function browsersDataDisplay(doc)
     {
-       
-
-
+       console.log(doc);
         $("#browserDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().BrowserName+'</h1><p>'+doc.data().BrowserDes+'</p><a href="#">Download Now</a></div></div></div>');
 
     }
