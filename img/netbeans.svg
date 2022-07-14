@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="HexagonLogo" viewBox="0 0 116.79 134.86">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:0.1px;}.cls-2{fill:#a1c535;}.cls-3{fill:#add439;}.cls-4{fill:#1b6ac6;}.cls-5{fill:#2e90e8;}.cls-6{fill:#ea205e;}.cls-7{fill:#a5073e;}.cls-8{fill:#f1f6e2;}.cls-9{fill:#cedbe6;}.cls-10{fill:#fff;}</style>
+  </defs>
+  <title>netbeans-logo-2-cleaned</title>
+  <g id="Netbeans">
+    <polygon class="cls-1" points="58.4 0.06 116.74 33.74 116.74 101.12 58.4 134.8 0.05 101.12 0.05 33.74 58.4 0.06"/>
+    <polygon class="cls-1" points="58.4 26.18 94.12 46.81 94.12 88.06 58.4 108.68 22.68 88.06 22.68 46.81 58.4 26.18"/>
+    <polygon class="cls-2" points="0.05 33.74 58.4 0.06 58.4 26.18 22.68 46.81 0.05 33.74"/>
+    <polygon class="cls-3" points="116.74 33.74 94.12 46.81 58.4 26.18 58.4 0.06 116.74 33.74"/>
+    <polygon class="cls-4" points="116.74 101.12 94.12 88.06 94.12 46.81 116.74 33.74 116.74 101.12"/>
+    <polygon class="cls-5" points="58.4 134.8 58.4 108.68 94.12 88.06 116.74 101.12 58.4 134.8"/>
+    <polygon class="cls-6" points="0.05 101.12 22.68 88.06 58.4 108.68 58.4 134.8 0.05 101.12"/>
+    <polygon class="cls-7" points="0.05 33.74 22.68 46.81 22.68 88.06 0.05 101.12 0.05 33.74"/>
+    <polygon class="cls-8" points="58.4 67.26 22.68 46.81 58.4 26.18 94.12 46.81 58.4 67.26"/>
+    <polygon class="cls-9" points="58.4 108.68 58.4 67.26 94.12 46.81 94.12 88.06 58.4 108.68"/>
+    <polygon class="cls-10" points="22.68 88.06 22.68 46.81 58.4 67.26 58.4 108.68 22.68 88.06"/>
+  </g>
+</svg>
