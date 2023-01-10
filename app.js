@@ -1,5 +1,10 @@
 var searchIds =[];
 var searNames=[];
+const browserCommonId="browser123";
+const developerCommonId="developTool123";
+const msgsCommonId="Msgs123";
+var collectionName;
+var queryByName;
   
     
 //browsers data get from firestore database
@@ -17,7 +22,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
    function browsersDataDisplay(doc)
     {
        console.log(doc);
-        $("#browserDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().BrowserName+'</h1><p>'+doc.data().BrowserDes+'</p><a href="#">Download Now</a></div></div></div>');
+        $("#browserDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().BrowserDes+'</p><a href="#">Download Now</a></div></div></div>');
 
     }
 
@@ -39,7 +44,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
            
     
     
-            $("#msgsAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().mAppName+'</h1><p>'+doc.data().mAppDes+'</p><a href="#">Download Now</a></div></div></div>');
+            $("#msgsAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().mAppDes+'</p><a href="#">Download Now</a></div></div></div>');
     
         }
 
@@ -62,7 +67,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
            
     
     
-            $("#devAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().DevName+'</h1><p>'+doc.data().DevDes+'</p><a href="#">Download Now</a></div></div></div>');
+            $("#devAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().DevDes+'</p><a href="#">Download Now</a></div></div></div>');
     
         }
 
@@ -140,7 +145,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
                      sVal=searNames[v];
                      sId=searchIds[v];
                      console.log(searchIds[v]);
-                     getUids(sVal);
+                     getUids(sVal,sId);
 
                  }
 
@@ -148,14 +153,31 @@ db.collection('Best_Browser').get().then((snapshot) =>{
              }
 
              
-            function getUids(sval)
+            function getUids(sval,sId)
             {
-                db.collection('Best_Browser').where("BrowserName", "==", sval).get().then((snapshot) =>{
+                if(sId==browserCommonId)
+                {
+                    collectionName="Best_Browser";
+                    //queryByName="BrowserName";
+                }
+                if(sId==developerCommonId)
+                {
+                    collectionName="Best_Developer";
+                    //queryByName="DevName";
+                }
+                if(sId==msgsCommonId)
+                {
+                    collectionName="Best_MsgsApp";
+                    //queryByName="mAppName";
+                }
+                console.log(collectionName);
+
+                db.collection(collectionName).where('Name', "==", sval).get().then((snapshot) =>{
 
                 
                       snapshot.forEach((doc)=>{
                        
-                        console.log(doc.id, "=>", doc.data().CommonId,"=" ,doc.data().BrowserName);
+                        console.log(doc.id, "=>", doc.data().CommonId,"=" ,doc.data().Name);
 
 
 
