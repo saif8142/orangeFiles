@@ -5,6 +5,32 @@ const developerCommonId="developTool123";
 const msgsCommonId="Msgs123";
 var collectionName;
 var queryByName;
+var catListsColl=[];
+var catListsNames=[];
+var catListsCommonids=[];
+
+//categories list from real time database
+var catLists=databaseCon.ref('/CATEGORIES');
+
+catLists.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+    //console.log(childSnapshot.key);
+    catListsColl.push(childSnapshot.key);
+    childSnapshot.forEach(function(secsnap)
+              {
+                catListsNames.push(secsnap.key);
+                catListsCommonids.push(secsnap.val());
+                $("#catgId").append('<li id="'+childSnapshot.key+'" onclick="dispAllApps(this.id)"><a href="#">'+secsnap.key+'</a></li><div class="border3"></div>');
+                //console.log(secsnap.key);
+                //console.log(secsnap.val());
+
+              });
+    });
+});
+
+//console.log("----------------------------");
+//console.log(catListsColl);
+//console.log("----------------------------");
   
     
 //browsers data get from firestore database
@@ -21,8 +47,8 @@ db.collection('Best_Browser').get().then((snapshot) =>{
 
    function browsersDataDisplay(doc)
     {
-       console.log(doc);
-        $("#browserDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().BrowserDes+'</p><a href="#">Download Now</a></div></div></div>');
+       //console.log(doc);
+        $("#browserDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().Des+'</p><a href="#">Download Now</a></div></div></div>');
 
     }
 
@@ -44,7 +70,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
            
     
     
-            $("#msgsAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().mAppDes+'</p><a href="#">Download Now</a></div></div></div>');
+            $("#msgsAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().Des+'</p><a href="#">Download Now</a></div></div></div>');
     
         }
 
@@ -67,7 +93,7 @@ db.collection('Best_Browser').get().then((snapshot) =>{
            
     
     
-            $("#devAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().DevDes+'</p><a href="#">Download Now</a></div></div></div>');
+            $("#devAppDiv").append('<div class="box" id="'+doc.id+'"><div class="container-left"><div class="icon"><img class="containericon" src="'+doc.data().Image+'"></div></div><div class="container-right"><div class="content"><h1>'+doc.data().Name+'</h1><p>'+doc.data().Des+'</p><a href="#">Download Now</a></div></div></div>');
     
         }
 
@@ -145,7 +171,10 @@ db.collection('Best_Browser').get().then((snapshot) =>{
                      sVal=searNames[v];
                      sId=searchIds[v];
                      console.log(searchIds[v]);
-                     getUids(sVal,sId);
+                    // getUids(sVal,sId);
+                    sessionStorage.setItem("sVal", sVal);
+                    sessionStorage.setItem("sId", sId);
+                    location.replace("app_display_page.html");
 
                  }
 
@@ -199,3 +228,18 @@ db.collection('Best_Browser').get().then((snapshot) =>{
 
           });
       });
+
+      //load displayAllApps page
+      function dispAllApps(id)
+      {
+        //catListsColl=[];
+        //catListsNames=[];
+        //catListsCommonids=[];
+        console.log(id);
+        sessionStorage.setItem("allAppsId", id);
+        sessionStorage.setItem("catListsColl",JSON.stringify(catListsColl));
+        sessionStorage.setItem("catListsNames",JSON.stringify(catListsNames));
+        sessionStorage.setItem("catListsCommonids",JSON.stringify(catListsCommonids));
+        location.replace("displayAllapps.html");
+        
+      }
